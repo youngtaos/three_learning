@@ -41,6 +41,24 @@ function App() {
     parentCube.add(cube);
     scene.add(parentCube);
 
+    //create  triangle
+    const geometry1 = new THREE.BufferGeometry();
+    //create triangle vertex data
+    const vertices = new Float32Array([
+      -1.0, -1.0, 2, 1.0, -1.0, 2, 1.0, 1.0, 2, -1.0, 1.0, 2,
+    ]);
+    //create vertex attribute
+    geometry1.setAttribute("position", new THREE.BufferAttribute(vertices, 3));
+    //create indices 索引
+    const indices = new Uint16Array([0, 1, 2, 2, 3, 0]);
+    geometry1.setIndex(new THREE.BufferAttribute(indices, 1));
+    const material1 = new THREE.MeshBasicMaterial({
+      color: "red",
+      side: THREE.DoubleSide,
+    });
+    const cube1 = new THREE.Mesh(geometry1, material1);
+    scene.add(cube1);
+
     //crate grid
     const gridHelper = new THREE.GridHelper(10, 10);
     scene.add(gridHelper);
