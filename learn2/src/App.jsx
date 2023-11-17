@@ -17,11 +17,16 @@ function App() {
 
     const geometry = new THREE.BoxGeometry(2, 2, 2);
     const material = new THREE.MeshBasicMaterial({ color: "red" });
+    const Pmaterial = new THREE.MeshBasicMaterial({ color: "blue" });
 
     //create cube
     const cube = new THREE.Mesh(geometry, material);
-    cube.position.set(0, 2, 0);
-    scene.add(cube);
+    cube.position.set(3, 2, 2);
+
+    //cteate parent cube
+    const parentCube = new THREE.Mesh(geometry, Pmaterial);
+    parentCube.add(cube);
+    scene.add(parentCube);
 
     //crate grid
     const gridHelper = new THREE.GridHelper(10, 10);
@@ -33,6 +38,12 @@ function App() {
 
     //add track
     const controls = new OrbitControls(camera, renderer.domElement);
+
+    //带阻尼
+    controls.enableDamping = true;
+
+    //设置阻尼系数
+    controls.dampingFactor = 0.01;
     controls.addEventListener("change", function () {
       console.log("change");
     });
@@ -44,8 +55,8 @@ function App() {
     // animate the cube
     function animate() {
       requestAnimationFrame(animate);
-      cube.rotation.x += 0.01;
-      cube.rotation.y += 0.01;
+      // cube.rotation.x += 0.01;
+      // cube.rotation.y += 0.01;
 
       controls.update();
       renderer.render(scene, camera);
