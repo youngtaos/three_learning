@@ -16,8 +16,8 @@ function App() {
       document.exitFullscreen();
     },
   };
-  gui.add(eventObj, "FullScreen");
-  gui.add(eventObj, "ExitFullSCreen");
+  gui.add(eventObj, "FullScreen").name("全屏");
+  gui.add(eventObj, "ExitFullSCreen").name("退出全屏");
   useEffect(() => {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
