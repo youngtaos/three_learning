@@ -52,11 +52,17 @@ function App() {
     //create indices 索引
     const indices = new Uint16Array([0, 1, 2, 2, 3, 0]);
     geometry1.setIndex(new THREE.BufferAttribute(indices, 1));
+    //create vertex group
+    geometry1.addGroup(0, 3, 0);
+    geometry1.addGroup(3, 3, 1);
     const material1 = new THREE.MeshBasicMaterial({
       color: "red",
       side: THREE.DoubleSide,
     });
-    const cube1 = new THREE.Mesh(geometry1, material1);
+    const material2 = new THREE.MeshBasicMaterial({
+      wireframe: true,
+    });
+    const cube1 = new THREE.Mesh(geometry1, [material1, material2]);
     scene.add(cube1);
 
     //crate grid
